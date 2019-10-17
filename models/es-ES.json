@@ -1,0 +1,108 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "hola mundo",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HelloWorldIntent",
+                    "slots": [],
+                    "samples": [
+                        "hola",
+                        "como estás",
+                        "dí hola mundo",
+                        "dí hola",
+                        "que hay",
+                        "como va",
+                        "dime hola"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SayMyNameIntent",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "vale me llamo {name}",
+                                "vale soy {name}",
+                                "soy {name}",
+                                "es {name}",
+                                "me llamo {name}",
+                                "{name} es mi nombre",
+                                "mi nombre es {name}",
+                                "{name}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "no tengo nombre",
+                        "soy anónimo",
+                        "no sé mi nombre",
+                        "{name} es mi nombre",
+                        "soy {name}",
+                        "el nombre es {name}",
+                        "mi nombre es {name}",
+                        "me llamo {name}"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "SayMyNameIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1046524167638.821280331445"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1046524167638.821280331445",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "No permitiré que personas anónimas interactuen conmigo"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Por favor, tienes que decirme tu nombre"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Debes decirme tu nombre"
+                    }
+                ]
+            }
+        ]
+    }
+}
