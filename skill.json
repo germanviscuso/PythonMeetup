@@ -3,25 +3,6 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:us-east-1:653305333100:function:d2304b04-796d-4cca-9205-6a344615a240:Release_0"
-        }
-      }
-    },
-    "publishingInformation": {
-      "locales": {
-        "en-US": {
-          "name": "Hello World"
-        }
-      }
-    }
-  }
-}
-
-{
-  "manifest": {
-    "apis": {
-      "custom": {
-        "endpoint": {
           "sourceDir": "lambda",
           "uri": "ask-custom-python-meetup"
         }
