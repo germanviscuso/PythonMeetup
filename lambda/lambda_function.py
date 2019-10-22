@@ -6,7 +6,7 @@
 # This sample is built using the handler classes approach in skill builder.
 import logging
 import ask_sdk_core.utils as ask_utils
-
+import gettext
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
@@ -27,7 +27,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Welcome, you can say Hello or Help. Which would you like?"
+        speak_output = _("Welcome, you can say Hello or Help. Which would you like?")
 
         return (
             handler_input.response_builder
@@ -46,17 +46,17 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hello World!"
+        speak_output = _("Hello World!")
         # name = int(handler_input.request_envelope.request.intent.slots["name"].value)
-        name = ask_utils.request_util.get_slot_value(handler_input, "name")
+        name = ask_utils.get_slot_value(handler_input, "name")
 
         if name is not None:
-            speak_output = "Hello {}".format(name)
+            speak_output = _("Hello {}").format(name)
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask("Say something!")
+                .ask(_("Say something!"))
                 .response
         )
 
@@ -69,7 +69,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "You can say hello to me! How can I help?"
+        speak_output = _("You can say hello to me! How can I help?")
 
         return (
             handler_input.response_builder
@@ -88,7 +88,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Goodbye!"
+        speak_output = _("Goodbye!")
 
         return (
             handler_input.response_builder
@@ -124,7 +124,7 @@ class IntentReflectorHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         intent_name = ask_utils.get_intent_name(handler_input)
-        speak_output = "You just triggered " + intent_name + "."
+        speak_output = _("You just triggered {}").format(intent_name)
 
         return (
             handler_input.response_builder
@@ -147,7 +147,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         # type: (HandlerInput, Exception) -> Response
         logger.error(exception, exc_info=True)
 
-        speak_output = "Sorry, I had trouble doing what you asked. Please try again."
+        speak_output = _("Sorry, I had trouble doing what you asked. Please try again.")
 
         return (
             handler_input.response_builder
@@ -162,6 +162,17 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 
 
 sb = SkillBuilder()
+
+class LocalizationInterceptor(AbstractRequestInterceptor):
+    def process(self, handler_input):
+        # type: (HandlerInput) -> None
+        locale = ask_utils.get_locale(handler_input)
+        logger.info("Locale is {}".format(locale))
+        i18n = gettext.translation(
+            'skill', localedir='locales', languages=[locale], fallback=True)
+        handler_input.attributes_manager.request_attributes["_"] = i18n.gettext
+
+sb.add_global_request_interceptor(LocalizationInterceptor())   
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
