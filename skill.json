@@ -176,7 +176,7 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "sourceDir": "lambda/custom",
+          "sourceDir": "lambda",
           "uri": "ask-custom-helloworld-default"
         }
       }
