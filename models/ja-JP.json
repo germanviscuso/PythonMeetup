@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "hola mundo",
+            "invocationName": "ハローワールド",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -19,11 +19,9 @@
                     "name": "HelloWorldIntent",
                     "slots": [],
                     "samples": [
-                        "hola",
-                        "como estás",
-                        "di hola mundo",
-                        "di hola",
-                        "hola mundo"
+                        "hello",
+                        "ハロー",
+                        "こんにちは"
                     ]
                 },
                 {

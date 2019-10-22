@@ -27,7 +27,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = _("Welcome, you can say Hello or Help. Which would you like?")
+        speak_output = _("Welcome, you can say Hello or Help. Which would you like to try?")
 
         return (
             handler_input.response_builder
@@ -41,22 +41,16 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
     """Handler for Hello World Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return (ask_utils.is_intent_name("HelloWorldIntent")(handler_input) or
-                ask_utils.is_intent_name("SayMyNameIntent")(handler_input))
+        return ask_utils.is_intent_name("HelloWorldIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speak_output = _("Hello World!")
-        # name = int(handler_input.request_envelope.request.intent.slots["name"].value)
-        name = ask_utils.get_slot_value(handler_input, "name")
-
-        if name is not None:
-            speak_output = _("Hello {}").format(name)
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask(_("Say something!"))
+                # .ask("add a reprompt if you want to keep the session open for the user to respond")
                 .response
         )
 
@@ -159,7 +153,6 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 # The SkillBuilder object acts as the entry point for your skill, routing all request and response
 # payloads to the handlers above. Make sure any new handlers or interceptors you've
 # defined are included below. The order matters - they're processed top to bottom.
-
 
 sb = SkillBuilder()
 
