@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 11:32+0200\n"
-"PO-Revision-Date: 2019-10-22 11:34+0200\n"
+"POT-Creation-Date: 2019-11-11 22:59+0100\n"
+"PO-Revision-Date: 2019-11-11 23:01+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es_ES\n"
 "Language-Team: es_ES <LL@li.org>\n"
@@ -18,35 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: lambda_function.py:30
+#: lambda_function.py:32
 msgid "Welcome, you can say Hello or Help. Which would you like?"
-msgstr "Te damos la bienvenida, puedes decir hola o, ayuda. ¿?Qué te gustaría hacer?."
+msgstr "Te damos la bienvenida, puedes decir hola o, ayuda. ¿Cómo puedo ayudarte?"
 
-#: lambda_function.py:49
+#: lambda_function.py:52
 msgid "Hello World!"
-msgstr "¡Hola Mundo!"
+msgstr "¡Hola mundo!"
 
-#: lambda_function.py:54
+#: lambda_function.py:57
 msgid "Hello {}"
-msgstr "¡Hola {}!."
+msgstr "Hola {}."
 
-#: lambda_function.py:59
+#: lambda_function.py:62
 msgid "Say something!"
-msgstr "Dí algo!"
+msgstr "¡Di algo!"
 
-#: lambda_function.py:72
+#: lambda_function.py:76
 msgid "You can say hello to me! How can I help?"
-msgstr "Puedes decirme hola!. ¿Cómo te puedo ayudar?"
+msgstr "¡Puedes decirme hola!. ¿Cómo puedo ayudarte?"
 
-#: lambda_function.py:91
+#: lambda_function.py:96
 msgid "Goodbye!"
-msgstr "¡Adiós!"
+msgstr "¡Hasta Luego!"
 
-#: lambda_function.py:127
+#: lambda_function.py:134
 msgid "You just triggered {}"
-msgstr "Acabas de activar {}."
+msgstr "Has iniciado {}."
 
-#: lambda_function.py:150
+#: lambda_function.py:158
 msgid "Sorry, I had trouble doing what you asked. Please try again."
-msgstr "Perdona, no he podido hacer lo que pides. Prueba otra vez."
+msgstr "Perdona, he tenido algún inconveniente. Por favor, internta mas tarde."
 

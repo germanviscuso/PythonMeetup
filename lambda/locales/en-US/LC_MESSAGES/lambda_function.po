@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 11:32+0200\n"
-"PO-Revision-Date: 2019-10-22 11:33+0200\n"
+"POT-Creation-Date: 2019-11-11 22:59+0100\n"
+"PO-Revision-Date: 2019-11-11 23:01+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_US\n"
 "Language-Team: en_US <LL@li.org>\n"
@@ -18,35 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: lambda_function.py:30
+#: lambda_function.py:32
 msgid "Welcome, you can say Hello or Help. Which would you like?"
 msgstr "Welcome, you can say Hello or Help. Which would you like?"
 
-#: lambda_function.py:49
+#: lambda_function.py:52
 msgid "Hello World!"
 msgstr "Hello World!"
 
-#: lambda_function.py:54
+#: lambda_function.py:57
 msgid "Hello {}"
 msgstr "Hello {}"
 
-#: lambda_function.py:59
+#: lambda_function.py:62
 msgid "Say something!"
 msgstr "Say something!"
 
-#: lambda_function.py:72
+#: lambda_function.py:76
 msgid "You can say hello to me! How can I help?"
 msgstr "You can say hello to me! How can I help?"
 
-#: lambda_function.py:91
+#: lambda_function.py:96
 msgid "Goodbye!"
 msgstr "Goodbye!"
 
-#: lambda_function.py:127
+#: lambda_function.py:134
 msgid "You just triggered {}"
 msgstr "You just triggered {}"
 
-#: lambda_function.py:150
+#: lambda_function.py:158
 msgid "Sorry, I had trouble doing what you asked. Please try again."
 msgstr "Sorry, I had trouble doing what you asked. Please try again."
 

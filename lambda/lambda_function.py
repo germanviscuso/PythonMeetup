@@ -54,7 +54,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
         name = ask_utils.get_slot_value(handler_input, "name")
 
         if name is not None:
-            speak_output = _(f"Hello {name}")
+            speak_output = _("Hello {}").format(name)
 
         return (
             handler_input.response_builder
