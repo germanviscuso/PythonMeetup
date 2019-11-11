@@ -54,7 +54,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
         name = ask_utils.get_slot_value(handler_input, "name")
 
         if name is not None:
-            speak_output = _("Hello {}").format(name)
+            speak_output = _(f"Hello {name}")
 
         return (
             handler_input.response_builder
@@ -131,7 +131,7 @@ class IntentReflectorHandler(AbstractRequestHandler):
         intent_name = ask_utils.get_intent_name(handler_input)
 
         _ = handler_input.attributes_manager.request_attributes["_"]
-        speak_output = _("You just triggered {}").format(intent_name)
+        speak_output = _(f"You just triggered {intent_name}")
 
         return (
             handler_input.response_builder
@@ -176,8 +176,7 @@ class LocalizationInterceptor(AbstractRequestInterceptor):
         # type: (HandlerInput) -> None
         locale = ask_utils.get_locale(handler_input)
         logger.info(f"Locale is {locale}")
-        i18n = gettext.translation(
-            'skill', localedir='locales', languages=[locale], fallback=True)
+        i18n = gettext.translation('lambda_function', localedir='locales', languages=[locale], fallback=True)
         handler_input.attributes_manager.request_attributes["_"] = i18n.gettext
 
 sb.add_global_request_interceptor(LocalizationInterceptor())   
