@@ -20,15 +20,15 @@ msgstr ""
 
 #: lambda_function.py:30
 msgid "Welcome, you can say Hello or Help. Which would you like?"
-msgstr ""
+msgstr "Te damos la bienvenida, puedes decir hola o, ayuda. ¿?Qué te gustaría hacer?."
 
 #: lambda_function.py:49
 msgid "Hello World!"
-msgstr "Hola Mundo!"
+msgstr "¡Hola Mundo!"
 
 #: lambda_function.py:54
 msgid "Hello {}"
-msgstr "Hola {}"
+msgstr "¡Hola {}!."
 
 #: lambda_function.py:59
 msgid "Say something!"
@@ -36,15 +36,15 @@ msgstr "Dí algo!"
 
 #: lambda_function.py:72
 msgid "You can say hello to me! How can I help?"
-msgstr "Puedes decirme hola! Cómo te puedo ayudar?"
+msgstr "Puedes decirme hola!. ¿Cómo te puedo ayudar?"
 
 #: lambda_function.py:91
 msgid "Goodbye!"
-msgstr "Adiós!"
+msgstr "¡Adiós!"
 
 #: lambda_function.py:127
 msgid "You just triggered {}"
-msgstr "Acabas de activar {}"
+msgstr "Acabas de activar {}."
 
 #: lambda_function.py:150
 msgid "Sorry, I had trouble doing what you asked. Please try again."

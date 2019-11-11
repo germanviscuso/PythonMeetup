@@ -10,6 +10,7 @@ import gettext
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
+from ask_sdk_core.dispatch_components import AbstractRequestInterceptor
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
@@ -27,6 +28,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        _ = handler_input.attributes_manager.request_attributes["_"]
         speak_output = _("Welcome, you can say Hello or Help. Which would you like?")
 
         return (
@@ -46,12 +48,13 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        _ = handler_input.attributes_manager.request_attributes["_"]
         speak_output = _("Hello World!")
         # name = int(handler_input.request_envelope.request.intent.slots["name"].value)
         name = ask_utils.get_slot_value(handler_input, "name")
 
         if name is not None:
-            speak_output = _("Hello {}").format(name)
+            speak_output = _(f"Hello {name}")
 
         return (
             handler_input.response_builder
@@ -69,6 +72,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        _ = handler_input.attributes_manager.request_attributes["_"]
         speak_output = _("You can say hello to me! How can I help?")
 
         return (
@@ -88,6 +92,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        _ = handler_input.attributes_manager.request_attributes["_"]
         speak_output = _("Goodbye!")
 
         return (
@@ -124,6 +129,8 @@ class IntentReflectorHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         intent_name = ask_utils.get_intent_name(handler_input)
+
+        _ = handler_input.attributes_manager.request_attributes["_"]
         speak_output = _("You just triggered {}").format(intent_name)
 
         return (
@@ -147,6 +154,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         # type: (HandlerInput, Exception) -> Response
         logger.error(exception, exc_info=True)
 
+        _ = handler_input.attributes_manager.request_attributes["_"]
         speak_output = _("Sorry, I had trouble doing what you asked. Please try again.")
 
         return (
@@ -167,7 +175,7 @@ class LocalizationInterceptor(AbstractRequestInterceptor):
     def process(self, handler_input):
         # type: (HandlerInput) -> None
         locale = ask_utils.get_locale(handler_input)
-        logger.info("Locale is {}".format(locale))
+        logger.info(f"Locale is {locale}")
         i18n = gettext.translation(
             'skill', localedir='locales', languages=[locale], fallback=True)
         handler_input.attributes_manager.request_attributes["_"] = i18n.gettext
