@@ -176,7 +176,7 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "sourceDir": "lambda",
+          "sourceDir": "lambda/py",
           "uri": "ask-custom-helloworld-default"
         }
       }

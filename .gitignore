@@ -1,3 +1,4 @@
 lambda/node_modules
 hooks/
 .vscode
+.DS_Store
