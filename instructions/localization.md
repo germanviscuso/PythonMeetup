@@ -227,8 +227,7 @@ class LocalizationInterceptor(AbstractRequestInterceptor):
         # type: (HandlerInput) -> None
         locale = handler_input.request_envelope.request.locale
         logger.info("Locale is {}".format(locale))
-        i18n = gettext.translation(
-            'skill', localedir='locales', languages=[locale], fallback=True)
+        i18n = gettext.translation('lambda_function', localedir='locales', languages=[locale], fallback=True)
         handler_input.attributes_manager.request_attributes["_"] = i18n.gettext
 
 sb.add_global_request_interceptor(LocalizationInterceptor())                
