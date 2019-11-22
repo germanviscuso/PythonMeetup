@@ -18,27 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: lambda_function.py:30
+#: lambda_function.py:32
 msgid "Welcome, you can say Hello or Help. Which would you like to try?"
 msgstr "Bem vindo, você pode dizer Olá ou Ajuda. Qual você gostaria de fazer?"
 
-#: lambda_function.py:48
+#: lambda_function.py:51
 msgid "Hello World!"
 msgstr "Olá!"
 
-#: lambda_function.py:66
+#: lambda_function.py:70
 msgid "You can say hello to me! How can I help?"
 msgstr "Você pode dizer olá para mim. Como posso te ajudar?"
 
-#: lambda_function.py:85
+#: lambda_function.py:90
 msgid "Goodbye!"
 msgstr "Tchau!"
 
-#: lambda_function.py:121
+#: lambda_function.py:127
 msgid "You just triggered {}"
 msgstr "Você acabou de ativar {}"
 
-#: lambda_function.py:144
+#: lambda_function.py:150
 msgid "Sorry, I had trouble doing what you asked. Please try again."
 msgstr "Desculpe, não consegui fazer o que você pediu. Por favor tente novamente."
 

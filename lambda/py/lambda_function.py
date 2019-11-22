@@ -124,7 +124,7 @@ class IntentReflectorHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         intent_name = ask_utils.get_intent_name(handler_input)
         _ = handler_input.attributes_manager.request_attributes["_"]
-        speak_output = _(f"You just triggered {intent_name}")
+        speak_output = _("You just triggered {}").format(intent_name)
 
         return (
             handler_input.response_builder

@@ -13,10 +13,10 @@ These steps are detailed below.
 
 ## Step 1 : Preparing the skill to extract data translatable strings
 
-Mark all the strings that needs to be translated with a special function **`_()`**. This function is used by the tools, to figure out all the data that needs to be extracted for translation.For example, consider your `skill.py` file contains these messages
+Mark all the strings that needs to be translated with a special function **`_()`**. This function is used by the tools, to figure out all the data that needs to be extracted for translation.For example, consider your `lambda_function.py` file contains these messages
 
 ```
-# Contents of skill.py
+# Contents of lambda_function.py
 
 skill_name = _("Test skill")
 _ = handler_input.attributes_manager.request_attributes["_"]
@@ -32,22 +32,22 @@ custom_hello_message = "Hi " + name + ". How are you doing?"
 # Incorrect i18n marking
 custom_hello_message = _("Hi ") + name + _(". How are you doing?")
 
-# Correct i18n marking
-custom_hello_message = _(f"Hi {name}. How are you doing?")
+# Correct i18n marking. Note: f"" notation is not compatible with the converter
+custom_hello_message = _("Hi {}. How are you doing?").format(name)
 ```
 
 ## Step 2 : Run a tool to extract the messages and generate message catalog
 
 Some distributions of the standard library provide a python program 'pygettext.py', which processes the python program and extract a list of strings to translate. However, it has been observed that not all distributions (particularly in Unix) has this file installed along with the Python standard installation[[1](https://quip-amazon.com/5hH1AOMs2xxq#ZKZ9CAFqwSE)]. For this purpose, and as mentioned in the documentation, we use a third party library called '[Babel](http://babel.pocoo.org/en/latest/cmdline.html)'. 
 
-Run the following commands to install babel and extract message strings from your skill file 'skill.py'.
+Run the following commands to install babel and extract message strings from your skill file 'lambda_function.py'.
 
 ```
 pip install babel
-pybabel extract skill.py -o skill.pot
+pybabel extract lambda_function.py -o lambda_function.pot
 ```
 
-This creates a `portable object template (.pot)` file called **skill.pot**, which contains all the messages that needs to be translated and some metadata regarding the locale info. For eg: following is the pot file for the skill containing `skill_name`, `welcome_message` and `custom_hello_message` strings marked for translation.
+This creates a `portable object template (.pot)` file called **lambda_function.pot**, which contains all the messages that needs to be translated and some metadata regarding the locale info. For eg: following is the pot file for the skill containing `skill_name`, `welcome_message` and `custom_hello_message` strings marked for translation.
 
 ```
 # Translations template for PROJECT.
@@ -69,15 +69,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: skill.py:1
+#: lambda_function.py:1
 msgid "Test skill"
 msgstr ""
 
-#: skill.py:2
+#: lambda_function.py:2
 msgid "Welcome. I have more info on eggplant"
 msgstr ""
 
-#: skill.py:3
+#: lambda_function.py:3
 msgid "Hi {}.How are you doing?"
 msgstr ""
 
@@ -88,11 +88,11 @@ As can be observed, the POT file is a simple file with msgid and msgstr mappings
 
 ## Step 3 : Create language specific translations
 
-For this example, we show example message catalogs for English (GB) & Spanish. Create a locales directory under folder where the skill.py is present. This will host all the message catalog files. For each translation, create a folder with the locale code (for exact locale code check the [documentation](https://developer.amazon.com/docs/custom-skills/develop-skills-in-multiple-languages.html)) and a folder in it by name `'LC_MESSAGES'` (This is the standard directory name where the python standard library can check for translations. Create the po files for the locales using the `init` command as follows
+For this example, we show example message catalogs for English (GB) & Spanish. Create a locales directory under folder where the lambda_function.py is present. This will host all the message catalog files. For each translation, create a folder with the locale code (for exact locale code check the [documentation](https://developer.amazon.com/docs/custom-skills/develop-skills-in-multiple-languages.html)) and a folder in it by name `'LC_MESSAGES'` (This is the standard directory name where the python standard library can check for translations. Create the po files for the locales using the `init` command as follows
 
 ```
-pybabel init -i skill.pot -l en_GB -o locales/en-GB/LC_MESSAGES/skill.po
-pybabel init -i skill.pot -l es_ES -o locales/es-ES/LC_MESSAGES/skill.po
+pybabel init -i lambda_function.pot -l en_GB -o locales/en-GB/LC_MESSAGES/lambda_function.po
+pybabel init -i lambda_function.pot -l es_ES -o locales/es-ES/LC_MESSAGES/lambda_function.po
 ```
 
 
@@ -100,20 +100,20 @@ Your directory structure should look similar to the following
 
 ```
 parent_dir
-     - skill.py
-     - skill.pot
+     - lambda_function.py
+     - lambda_function.pot
      - locales
             - en-GB
                 - LC_MESSAGES
-                    - skill.po
+                    - lambda_function.po
             - es-ES
                 - LC_MESSAGES
-                    - skill.po
+                    - lambda_function.po
 ```
 
-Update the skill.po for both locales, to provide translated message strings. For example, following are the `en-GB/LC_MESSAGES/skill.po` and `es-ES/LC_MESSAGES/skill.po` files
+Update the lambda_function.po for both locales, to provide translated message strings. For example, following are the `en-GB/LC_MESSAGES/lambda_function.po` and `es-ES/LC_MESSAGES/lambda_function.po` files
 
-### en-gb/lc_messages/skill.po
+### en-gb/lc_messages/lambda_function.po
 
 ```
 # English (United Kingdom) translations for PROJECT.
@@ -136,21 +136,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: skill.py:1
+#: lambda_function.py:1
 msgid "Test skill"
 msgstr ""
 
-#: skill.py:2
+#: lambda_function.py:2
 msgid "Welcome. I have more info on eggplant"
 msgstr "Welcome. i have more info on aubergine"
 
-#: skill.py:3
+#: lambda_function.py:3
 msgid "Hi {}.How are you doing?"
 msgstr "Hi {}.How are you doing?"
 
 ```
 
-### es-es/lc_messages/skill.po
+### es-es/lc_messages/lambda_function.po
 
 ```
 # Spanish (Spain) translations for PROJECT.
@@ -173,15 +173,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: skill.py:1
+#: lambda_function.py:1
 msgid "Test skill"
 msgstr "Habilidad de prueba"
 
-#: skill.py:2
+#: lambda_function.py:2
 msgid "Welcome to my test skill"
 msgstr "Bienvenido. Tengo más información sobre berenjena"
 
-#: skill.py:3
+#: lambda_function.py:3
 msgid "Hi {}.How are you doing?"
 msgstr "Hola {}. ¿Cómo estás?"
 
@@ -191,8 +191,8 @@ msgstr "Hola {}. ¿Cómo estás?"
 Once filled, we need to translate these po files to mo files (Machine Object - byte code files for faster loading by the program). Babel provides a command to compile these po file to mo files. Run the following command to generate the `mo` files for the `po` files.
 
 ```
-pybabel compile -i locales/en-GB/LC_MESSAGES/skill.po -o locales/en-GB/LC_MESSAGES/skill.mo
-pybabel compile -i locales/es-ES/LC_MESSAGES/skill.po -o locales/es-ES/LC_MESSAGES/skill.mo
+pybabel compile -i locales/en-GB/LC_MESSAGES/lambda_function.po -o locales/en-GB/LC_MESSAGES/lambda_function.mo
+pybabel compile -i locales/es-ES/LC_MESSAGES/lambda_function.po -o locales/es-ES/LC_MESSAGES/lambda_function.mo
 ```
 
 ## Step 4 : Use gettext module for translation
@@ -202,11 +202,11 @@ As the [documentation](https://docs.python.org/3.6/library/gettext.html#localizi
 ```
 import gettext
 
-i18n = gettext.translation('skill', localedir='locales', languages=['en-GB','es-ES'])
+i18n = gettext.translation('lambda_function', localedir='locales', languages=['en-GB','es-ES'])
 _ = i18n.gettext
 
 # The variables in gettext.translation method are : 
-# - ".mo" domain name, which is "skill"
+# - ".mo" domain name, which is "lambda_function"
 # - localedir (relative or absolute locale root folder)
 # - languages array in which the translation has to be resolved. 
 # If no string is present, then the fallback is the actual string passed to _()
